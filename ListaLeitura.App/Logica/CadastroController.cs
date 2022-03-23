@@ -11,21 +11,15 @@ using System.Threading.Tasks;
 
 namespace ListaLeitura.App.Logica
 {
-    public class CadastroLogica
+    public class CadastroController
     {        
 
         //Cadastro de um novo livro
-        public static Task ProcessaFormulario(HttpContext context)
+        public string Incluir(Livro livro)
         {
-            var livro = new Livro()
-            {
-                Titulo = context.Request.Form["titulo"].First(),
-                Autor = context.Request.Form["autor"].First(),
-            };
-
             var repo = new LivroRepositorioCSV();
             repo.Incluir(livro);
-            return context.Response.WriteAsync("Livro adicionado com sucesso!");
+            return "Livro adicionado com sucesso!";
         }
 
         //Exibe formulário para cadastro do livro
@@ -34,5 +28,6 @@ namespace ListaLeitura.App.Logica
             var html = HtmlUtils.CarregaArquivoHtml("formulario");
             return context.Response.WriteAsync(html);
         }
+
     }
 }

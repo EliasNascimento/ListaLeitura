@@ -1,6 +1,4 @@
-﻿using ListaLeitura.App.Mvc;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Routing;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ListaLeitura.App
@@ -9,12 +7,14 @@ namespace ListaLeitura.App
     {
 
         public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddRouting();
+        {            
             services.AddMvc();  
         }
         public void Configure(IApplicationBuilder app)
         {
+            //utilizado para ver detalhes de erros das páginas;
+            app.UseDeveloperExceptionPage();
+
            app.UseMvcWithDefaultRoute();    
         }
     }

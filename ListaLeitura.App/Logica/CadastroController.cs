@@ -2,6 +2,7 @@
 using ListaLeitura.App.Negocio;
 using ListaLeitura.App.Repositorio;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 namespace ListaLeitura.App.Logica
 {
     public class CadastroController
-    {        
+    {
 
         //Cadastro de um novo livro
         public string Incluir(Livro livro)
@@ -23,10 +24,9 @@ namespace ListaLeitura.App.Logica
         }
 
         //Exibe formulário para cadastro do livro
-        public static Task ExibeFormulario(HttpContext context)
+        public IActionResult ExibeFormulario()
         {
-            var html = HtmlUtils.CarregaArquivoHtml("formulario");
-            return context.Response.WriteAsync(html);
+            return new ViewResult { ViewName = "formulario" };
         }
 
     }
